@@ -117,7 +117,10 @@
 	};
 	class Node extends React.PureComponent {
 		getTransform() {
-			return `translate(${this.props.y}, ${this.props.x})`;
+			return this.props.gProps &&
+				typeof this.props.gProps.transform === 'function'
+				? this.props.gProps.transform(this.props)
+				: `translate(${this.props.y}, ${this.props.x})`;
 		}
 
 		render() {
